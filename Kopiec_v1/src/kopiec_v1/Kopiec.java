@@ -85,10 +85,6 @@ public class Kopiec {
     public static void main(String[] args) {
         Kopiec test = new Kopiec();
         test.fill();
-//        test.add(14);
-//        test.add(15);
-//        test.add(45);
-//        test.add(0);
         System.out.println(test);
 
         test.sort();
