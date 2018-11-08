@@ -1,0 +1,73 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{pdfpages}
+
+
+\title{Projekt indywidualny\\ Specyfikacja Funkcjonalna}
+\author{Arkadiusz Michalak}
+\date{Algorytmy i struktury danych \\ 07.11.2018}
+
+
+\begin{document}
+\maketitle
+\pagebreak
+
+\section{Opis problemu}
+Celem projektu jest stworzenie programu którego zadaniem bêdzie przeliczanie wymian walutowych. Bêd¹c zainteresowny wymian¹ waluty z~jednej na~drug¹ mo¿na to~zrobiæ bezpoœrednio b¹dŸ te¿ poœrednio przy u¿yciu innych walut ni¿ wejœciowa i~docelowa. Okreœlenie który ze sposobów bêdzie korzystniejszy i~w~jakiej kolejnoœci wymieniaæ poœrednie waluty stwarza du¿e wyzwanie. Dziejê siê tak ze~wzglêdu na znaczn¹ iloœæ ró¿nych walut i~rozmaite powi¹zania miedzy nimi, oraz ewentualne prowizji od~wymiany, zarówno sta³e jak i wyra¿one procentem kwoty któr¹ otrzymujemy. Analizuj¹c zestaw danych mo¿na znaleŸæ sytuacje w~której wymieniaj¹c jedn¹ walutê wracamy do posiadania tej samej waluty jednak osi¹gamy zysk. Takie dzia³anie bêdziemy okreœlaæ mianem \textit{arbitra¿u ekonomicznego}.
+	
+\section{Funkcjonalnoœæ}
+Program bêdzie posiada³ dwie funkcjonalnoœci:\begin{itemize}
+\item wskazanie najkorzystniejszego sposoby wymiany danej waluty wejœciowej na~okreœlon¹ walutê wyjœciow¹
+\item sprawdzenie czy w podanym zbiorze danych istnieje arbitra¿ ekonomiczy, nastêpnie wypisanie go
+\end{itemize}
+	
+\section{Sposób obs³ugi}
+Do uruchomienia programu wymagane jest zainstalowanie maszyny wirtualnej java. Obs³uga bêdzie odbywaæ siê w ca³oœci z wiersza polecañ, wywo³uj¹c program nale¿y podaæ odpowiednie argumenty w nastêpuj¹cej kolejnoœci:
+\begin{enumerate}
+    \item któr¹ funkcjonalnoœæ uruchomiæ:\begin{itemize}
+    \item arbitraz - w celu sprawdzenia czy istnieje arbitra¿
+    \item wymiana - w celu znalezienia najbardziej op³acalnego sposobu wymian
+\end{itemize}
+    \item œcie¿ka do pliku zawieraj¹cego dane, format i sposób organizacji danych w pliku opisany w sekcji \textbf{4 Sposób organizacji pliku}
+    \item nazwa waluty wejœciowej, wyra¿on¹ zunifikowanym 3-literowym kodem
+    \item iloœæ waluty wejœciowej 
+    \item nazwa waluty wyjœciowej, jeœli wybrano opcje wymiany
+\end{enumerate}
+
+\section{Sposób organizacji pliku}
+Plik wejœciowy musi byæ w formacie tekstowym \(.txt\), do separacji poszczególnych wartoœci nale¿y u¿yc spacji. Plik ma siê sk³adaæ z~dwóch sekcji:\begin{enumerate}
+    \item Informacje na temat walut, ka¿da waluta w odzielnym wierszu opisana trzema wartoœciami\begin{itemize}
+    \item indeks waluty - kolejne liczby naturalne, zaczynaj¹c od 0
+    \item 3-literowy kod waluty
+    \item pe³na nazwa waluty
+\end{itemize}
+    \item Informacje na temat kursów walut wzglêdem siebie, ka¿dy kurs w oddzielnym wierszu opisana szeœcioma wartoœciami:\begin{itemize}
+    \item indeks kursu - kolejne liczy naturalne, zaczynaj¹c od 0
+    \item kod waluty wejœciowej
+    \item kod waluty wyjœciowej
+    \item kurs 
+    \item rodzaj prowizji - symbol \% - jeœli procentowa, litera S - jeœli sta³a
+    \item wysokoœæ prowizji 
+\end{itemize}
+\end{enumerate}
+Przyk³ad: \newline
+0 BRL real brazylijski \newline
+1 PLN polski z³oty \newline
+2 EUR euro\newline
+0 BRL PLN 0,9442 S 5 \newline
+1 EUR PLN 4,2972 \% 0,001 \newline
+\section{Obs³uga b³êdów}
+Program bêdzie wyposa¿ony w obs³ugê wyj¹tków spowodowanych b³êdnym podaniem argumentów wywo³ania i~b³êdnych danych w pliku. Jeœli zajdzie sytuacja wyj¹tkowa zostanie wypisany odpowiedni komunikat. Przyk³adowe komunikaty o b³edach to:\begin{itemize}
+    \item "Podano nieprawid³ow¹ nazwê operacji. Jako pierwszy argument podaj \textit{arbitraz} lub \textit{wymiana}"
+    \item "Nie znaleziono lub nie uda³o siê otworzyæ pliku"
+    \item "Podana nazwa waluty nie istnieje"
+    \item "¯¹dana waluta nie istnieje w zbiorze danych"
+    \item "Plik zawiera nieprawid³owe dane w lini:"
+\end{itemize} 
+
+\section{Opis wymagañ niefunkcjonalnych}
+TO DO
+\end{document}
+
