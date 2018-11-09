@@ -7,7 +7,7 @@
 
 \title{Projekt indywidualny\\ Specyfikacja Funkcjonalna}
 \author{Arkadiusz Michalak}
-\date{Algorytmy i struktury danych \\ 07.11.2018}
+\date{Algorytmy i struktury danych \\ 09.11.2018}
 
 
 \begin{document}
@@ -58,15 +58,21 @@ Przyk³ad: \newline
 2 EUR euro\newline
 0 BRL PLN 0,9442 STA£A 5 \newline
 1 EUR PLN 4,2972 PROC 0,001 \newline
-\section{Obs³uga b³êdów}
-Program bêdzie wyposa¿ony w obs³ugê wyj¹tków spowodowanych b³êdnym podaniem argumentów wywo³ania i~b³êdnych danych w pliku. Jeœli zajdzie sytuacja wyj¹tkowa zostanie wypisany odpowiedni komunikat. Przyk³adowe komunikaty o b³edach to:\begin{itemize}
-    \item "Podano nieprawid³ow¹ nazwê operacji. Jako pierwszy argument podaj \textit{arbitraz} lub \textit{wymiana}"
-    \item "Nie znaleziono lub nie uda³o siê otworzyæ pliku"
-    \item "¯¹dana waluta nie istnieje w zbiorze danych"
-    \item "Plik zawiera nieprawid³owe dane w lini:"
-\end{itemize} 
+\section{Obs³uga b³êdów:}
+Poni¿ej przedstawiono listê b³êdów jakie mog¹ wyst¹piæ podczas dzia³ania programu. Nale¿y zadbaæ o ich pe³n¹ obs³ugê i jasn¹ komunikacje rezultatów u¿ytkownikowi.\begin{itemize}
+    \item Plik zawiera nieprawid³owe/niepe³ne dane
+    \item Plik jest nieprawid³owego formatu
+    \item Plik nie istnieje
+    \item Nieprawid³owa iloœæ waluty
+    \item Nieznana nazwa operacji
+    \item Wejœciowa lub wyjœciowa waluta nie istnieje w zbiorze danych
+    \item Œcie¿ka miedzy walut¹ wejœciow¹ a wyjœciow¹ nie istnieje
+    \item Podana liczba argumentów jest zbyt ma³a dla wybranej opcji
+    \item Podana liczba argumentów jest zbyt du¿a dla wybranej opcji
+    \item brak pamiêci
+\end{itemize}
 
 \section{Opis wymagañ niefunkcjonalnych}
-Poza przejrzystoœci¹ i ³atwoœci¹ obs³ugi jak¹ gwarantuje obs³uga b³edów program powinien dzia³aæ odpowiednio krótko. Pod tym s³owem rozumie siê czas wykonania obliczeñ rzêdu kilku sekund dla niewielkich zbiorów danych tzn. kilkunastu walut. Dla du¿ych zbiorów danych, typu kilkaset walut z du¿¹ liczb¹ po³¹czeñ, czas wykonania siê programu nie powinien przekraczaæ kilkunastu minut.   
+Poza przejrzystoœci¹ i ³atwoœci¹ obs³ugi jak¹ gwarantuje obs³uga b³edów program powinien dzia³aæ odpowiednio krótko. Pod tym s³owem rozumie siê czas wykonania obliczeñ rzêdu kilku sekund dla niewielkich zbiorów danych tzn. kilkunastu walut. Dla du¿ych zbiorów danych, typu kilkuset walut z du¿¹ liczb¹ po³¹czeñ, czas wykonania siê programu nie powinien przekraczaæ kilkunastu minut.   
 \end{document}
 
