@@ -7,7 +7,7 @@
 
 \title{Projekt indywidualny\\ Specyfikacja Funkcjonalna}
 \author{Arkadiusz Michalak}
-\date{Algorytmy i struktury danych \\ 09.11.2018}
+\date{Algorytmy i struktury danych \\ 10.11.2018}
 
 
 \begin{document}
@@ -15,41 +15,44 @@
 \pagebreak
 
 \section{Opis problemu}
-Celem projektu jest stworzenie programu którego zadaniem bêdzie przeliczanie wymian walutowych. Bêd¹c zainteresowany wymian¹ waluty z~jednej na~drug¹ mo¿na to~zrobiæ bezpoœrednio b¹dŸ te¿ poœrednio przy u¿yciu innych walut ni¿ wejœciowa i~docelowa. Okreœlenie który ze sposobów bêdzie korzystniejszy i~w~jakiej kolejnoœci wymieniaæ poœrednie waluty stwarza du¿e wyzwanie. Dziejê siê tak ze~wzglêdu na znaczn¹ iloœæ ró¿nych walut i~rozmaite powi¹zania miêdzy nimi, oraz ewentualne prowizje od~wymiany, zarówno sta³e jak i wyra¿one procentem kwoty któr¹ otrzymujemy. Analizuj¹c zestaw danych mo¿na znaleŸæ sytuacje w~której wymieniaj¹c jedn¹ walutê wracamy do posiadania tej samej waluty jednak osi¹gamy zysk. Takie dzia³anie bêdziemy okreœlaæ mianem \textit{arbitra¿u ekonomicznego}.
+Celem projektu jest stworzenie programu którego zadaniem bêdzie przeliczanie wymian walutowych. Bêd¹c zainteresowanym wymian¹ waluty z~jednej na~drug¹ mo¿na to~zrobiæ bezpoœrednio b¹dŸ te¿ poœrednio przy u¿yciu innych walut ni¿ wejœciowa i~docelowa. Okreœlenie który ze sposobów bêdzie korzystniejszy i~w~jakiej kolejnoœci wymieniaæ poœrednie waluty stwarza du¿e wyzwanie. Dziejê siê tak ze~wzglêdu na znaczn¹ iloœæ ró¿nych walut i~rozmaite powi¹zania miêdzy nimi, oraz ewentualne prowizje od~wymiany, zarówno sta³e jak i wyra¿one procentem kwoty któr¹ otrzymujemy. Analizuj¹c zestaw danych mo¿na znaleŸæ sytuacje w~której wymieniaj¹c jedn¹ walutê wracamy do posiadania tej samej waluty jednak osi¹gamy zysk. Takie dzia³anie bêdziemy okreœlaæ mianem \textit{arbitra¿u ekonomicznego}.
 	
 \section{Funkcjonalnoœæ}
 Program bêdzie posiada³ dwie funkcjonalnoœci:\begin{itemize}
-\item wskazanie najkorzystniejszego sposobu wymiany danej waluty wejœciowej na~okreœlon¹ walutê wyjœciow¹
-\item sprawdzenie czy w podanym zbiorze danych istnieje arbitra¿ ekonomiczny, nastêpnie wypisanie go
+\item wskazanie najkorzystniejszego sposobu wymiany danej waluty wejœciowej na~okreœlon¹ walutê wyjœciow¹,
+\item sprawdzenie czy w podanym zbiorze danych istnieje arbitra¿ ekonomiczny.
 \end{itemize}
 	
 \section{Sposób obs³ugi}
 Do uruchomienia programu wymagane jest zainstalowanie maszyny wirtualnej java. Obs³uga bêdzie odbywaæ siê w ca³oœci z wiersza poleceñ, wywo³uj¹c program nale¿y podaæ odpowiednie argumenty w nastêpuj¹cej kolejnoœci:
 \begin{enumerate}
-    \item któr¹ funkcjonalnoœæ uruchomiæ:\begin{itemize}
-    \item arbitraz - w celu sprawdzenia czy istnieje arbitra¿
-    \item wymiana - w celu znalezienia najbardziej op³acalnego sposobu wymiany
+    \item Któr¹ funkcjonalnoœæ uruchomiæ:\begin{itemize}
+    \item arbitraz - w celu sprawdzenia czy istnieje arbitra¿,
+    \item wymiana - w celu znalezienia najbardziej op³acalnego sposobu wymiany.
 \end{itemize}
-    \item œcie¿ka do pliku zawieraj¹cego dane, format i sposób organizacji danych w pliku opisany w sekcji \textbf{4 Sposób organizacji pliku}
-    \item nazwa waluty wejœciowej, wyra¿on¹ zunifikowanym 3-literowym kodem
-    \item iloœæ waluty wejœciowej 
-    \item nazwa waluty wyjœciowej, jeœli wybrano opcje wymiany
+    \item Œcie¿ka do pliku zawieraj¹cego dane, format i sposób organizacji danych w pliku opisany w sekcji \textbf{4 Sposób organizacji pliku.}
+    \item Nazwa waluty wejœciowej, wyra¿on¹ zunifikowanym 3-literowym kodem.
+    \item Iloœæ waluty wejœciowej.
+   \item Nazwa waluty wyjœciowej, jeœli wybrano opcje wymiany.
+Przyk³ad: \newline
+program arbitraz ./walut.txt EUR 10000.50\newline
+program wymiana ./walut.txt EUR 10.5 PLN\newline
 \end{enumerate}
 
 \section{Sposób organizacji pliku}
-Plik wejœciowy musi byæ w formacie tekstowym \(.txt\), do separacji poszczególnych wartoœci nale¿y u¿yc spacji. Plik ma siê sk³adaæ z~dwóch sekcji:\begin{enumerate}
-    \item Informacje na temat walut, ka¿da waluta w oddzielnym wierszu opisana trzema wartoœciami\begin{itemize}
-    \item indeks waluty - kolejne liczby naturalne, zaczynaj¹c od 0
-    \item 3-literowy kod waluty
-    \item pe³na nazwa waluty
+Plik wejœciowy musi byæ w formacie tekstowym \(.txt\), do separacji poszczególnych wartoœci nale¿y u¿yæ spacji. Plik ma siê sk³adaæ z~dwóch sekcji:\begin{enumerate}
+    \item Informacje na temat walut, ka¿da waluta w oddzielnym wierszu opisana trzema wartoœciami:\begin{itemize}
+    \item indeks waluty - kolejne liczby naturalne, zaczynaj¹c od 0,
+    \item 3-literowy kod waluty,
+    \item pe³na nazwa waluty.
 \end{itemize}
-    \item Informacje na temat kursów walut wzglêdem siebie, ka¿dy kurs w oddzielnym wierszu opisany szeœcioma wartoœciami:\begin{itemize}
-    \item indeks kursu - kolejne liczby naturalne, zaczynaj¹c od 0
-    \item kod waluty wejœciowej
-    \item kod waluty wyjœciowej
-    \item kurs 
-    \item rodzaj prowizji - PROC - jeœli procentowa, STA£A - jeœli sta³a
-    \item wysokoœæ prowizji 
+    \item Informacje na temat kursów walut wzglêdem siebie. Ka¿dy kurs w oddzielnym wierszu opisany szeœcioma wartoœciami:\begin{itemize}
+    \item indeks kursu - kolejne liczby naturalne, zaczynaj¹c od 0,
+    \item kod waluty wejœciowej,
+    \item kod waluty wyjœciowej,
+    \item kurs,
+    \item rodzaj prowizji - PROC - jeœli procentowa, STA£A - jeœli sta³a,
+    \item wysokoœæ prowizji.
 \end{itemize}
 \end{enumerate}
 Przyk³ad: \newline
@@ -58,21 +61,38 @@ Przyk³ad: \newline
 2 EUR euro\newline
 0 BRL PLN 0,9442 STA£A 5 \newline
 1 EUR PLN 4,2972 PROC 0,001 \newline
-\section{Obs³uga b³êdów:}
-Poni¿ej przedstawiono listê b³êdów jakie mog¹ wyst¹piæ podczas dzia³ania programu. Nale¿y zadbaæ o ich pe³n¹ obs³ugê i jasn¹ komunikacje rezultatów u¿ytkownikowi.\begin{itemize}
-    \item Plik zawiera nieprawid³owe/niepe³ne dane
-    \item Plik jest nieprawid³owego formatu
-    \item Plik nie istnieje
-    \item Nieprawid³owa iloœæ waluty
-    \item Nieznana nazwa operacji
-    \item Wejœciowa lub wyjœciowa waluta nie istnieje w zbiorze danych
-    \item Œcie¿ka miedzy walut¹ wejœciow¹ a wyjœciow¹ nie istnieje
-    \item Podana liczba argumentów jest zbyt ma³a dla wybranej opcji
-    \item Podana liczba argumentów jest zbyt du¿a dla wybranej opcji
-    \item brak pamiêci
-\end{itemize}
+
+\newpage
+
+\section{Sposób wypisu rezultatów}
+Zarówno komunikaty o b³êdach jak i wyniki prawid³owego dzia³ania maj¹ zostaæ wyœwietlone na konsolê. W przypadku obliczania arbitra¿u nale¿y wypisaæ œcie¿kê walut dla jakiej zachodzi oraz o ile dok³adnie wzrasta suma posiadanych pieniêdzy. Dla poszukiwania najlepszej wymiany nale¿y wypisaæ œcie¿kê kolejnych walut oraz uzyskan¹ iloœæ waluty wyjœciowej. Dla wypisu wartoœci pieniêdzy przyjmujê siê zaokr¹glenie do czwartej cyfry po przecinku, zgodnie ze standardem wiêkszoœci kantorów.
 
 \section{Opis wymagañ niefunkcjonalnych}
-Poza przejrzystoœci¹ i ³atwoœci¹ obs³ugi jak¹ gwarantuje obs³uga b³edów program powinien dzia³aæ odpowiednio krótko. Pod tym s³owem rozumie siê czas wykonania obliczeñ rzêdu kilku sekund dla niewielkich zbiorów danych tzn. kilkunastu walut. Dla du¿ych zbiorów danych, typu kilkuset walut z du¿¹ liczb¹ po³¹czeñ, czas wykonania siê programu nie powinien przekraczaæ kilkunastu minut.   
+Poza przejrzystoœci¹ i ³atwoœci¹ obs³ugi, jak¹ gwarantuje obs³uga b³edów, program powinien dzia³aæ odpowiednio krótko. Pod tym s³owem rozumie siê, i¿~czas wykonania obliczeñ dla sprzêtu opisanego w specyfikacji implementacyjne musi wynoœci:\begin{itemize}
+    \item dla mniej ni¿ 20 walut poni¿ej 1 minuty,
+	 \item dla walut w przedziale 20-100 poni¿ej 5 minut,
+	 \item dla walut w przedziale 100-300 poni¿ej 20 minut,
+	 \item dla wiêkszych iloœci walut program powinien siê wykonaæ, wczeœniej wyœwietlaj¹c komunikat o czasie dzia³ania przekraczaj¹cym 20 minut.
+\end{itemize}
+
+\section{Scenariusze testów akceptacyjnych}
+\begin{enumerate}
+    \item Podanie pliku w formacie innym ni¿ tekstowy.
+    \item Podanie b³êdnej œcie¿ki do pliku.
+    \item Podanie pliku pustego.
+    \item Podanie pliku bez indeksów walut.
+    \item Podanie pliku bez nazwy jednej z walut.
+    \item ¯¹danie znalezienia arbitra¿u dla 100 walut po³¹czonych ka¿da z~ka¿d¹.
+    \item ¯¹danie znalezienia najlepszej wymiany kiedy waluty nie s¹ po³¹czone ¿adn¹ œcie¿k¹.
+    \item ¯¹danie znalezienia arbitra¿u dla zbioru walut i kursów w którym arbitra¿ nie istnieje.
+    \item Nie podanie argumentów wejœciowych.
+    \item Podanie zbyt ma³ej liczby argumentów wejœciowych.
+    \item Podanie waluty która nie istnieje w zbiorze walut pliku.
+    \item ¯¹danie znalezienia najlepszej wymiany dla 20 walut z istniej¹cym po³¹czeniem pomiedzy walut¹ wejœciow¹ a wyjœciow¹.
+    \item Podanie ujemnej wartoœci kursu.
+    \item Podanie zerowej wartoœci kursu.
+    \item Podanie ujemnej wartoœci waluty wejœciowej.
+\end{enumerate}
+Program bêdzie uznany za dzia³aj¹cy jeœli pozytywnie przejdzie wszystkie testy. Pod s³owem pozytywnie rozumie siê wyœwietlenie rezultatów w czasie zdefiniowanym powy¿ej, lub odpowiedni komunikat b³edu który pozwoli u¿ytkownikowi naprawiæ b³¹d.
 \end{document}
 
