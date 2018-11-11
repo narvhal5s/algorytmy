@@ -7,7 +7,7 @@
 
 \title{Projekt indywidualny\\ Specyfikacja Funkcjonalna}
 \author{Arkadiusz Michalak}
-\date{Algorytmy i struktury danych \\ 10.11.2018}
+\date{Algorytmy i struktury danych \\ 11.11.2018}
 
 \begin{document}
 \maketitle
@@ -68,11 +68,15 @@ Przyk³ad: \newline
 Zarówno komunikaty o b³êdach jak i wyniki prawid³owego dzia³ania maj¹ zostaæ wyœwietlone na konsolê. W przypadku obliczania arbitra¿u nale¿y wypisaæ œcie¿kê walut dla jakiej zachodzi oraz o ile dok³adnie wzrasta suma posiadanych pieniêdzy. Dla poszukiwania najlepszej wymiany nale¿y wypisaæ œcie¿kê kolejnych walut oraz uzyskan¹ iloœæ waluty wyjœciowej. Dla wypisu wartoœci pieniêdzy przyjmujê siê zaokr¹glenie do czwartej cyfry po przecinku, zgodnie ze standardem wiêkszoœci kantorów.
 
 \section{Opis wymagañ niefunkcjonalnych}
-Poza przejrzystoœci¹ i ³atwoœci¹ obs³ugi, jak¹ gwarantuje obs³uga b³edów, program powinien dzia³aæ odpowiednio krótko. Pod tym s³owem rozumie siê, i¿~czas wykonania obliczeñ dla sprzêtu opisanego w specyfikacji implementacyjne musi wynoœci:\begin{itemize}
-    \item dla mniej ni¿ 20 walut poni¿ej 1 minuty,
-	 \item dla walut w przedziale 20-100 poni¿ej 5 minut,
-	 \item dla walut w przedziale 100-300 poni¿ej 20 minut,
-	 \item dla wiêkszych iloœci walut program powinien siê wykonaæ, wczeœniej wyœwietlaj¹c komunikat o czasie dzia³ania przekraczaj¹cym 20 minut.
+G³ówne i najwa¿niejsze wymaganie niefunkcjonalne to intuicyjna ob³s³uga programu i~prosta komunikacja z u¿ytkownikiem. Komunikaty o b³êdach powinny byæ dok³adne i~pozwalaj¹ce szybko naprawiæ u¿ytkownikowi b³¹d. Przyk³ad: \newline
+"W linii 54 pliku podano nieprawid³ow¹ wartoœæ prowizji. Prowizja nie mo¿e byæ ujemna "\newline
+Program powinien p³ynnie dzia³aæ na wiêkszoœci komputerów domowego u¿ytku, które spe³niaj¹ nastêpuj¹ce wymagania:\begin{itemize}
+    \item 2GB pamiêci RAM,
+    \item proceser 2-rdzenie 1.8 GHz,
+    \item karta graficzna zintegrowana,
+    \item zainstalowana maszyna wirtualne Java wersja 1.8.0
+    \item system operacyjne windows 7, 8, 10
+    \item program obs³ugi wiersza poleceñ np: PowerShell, CMD
 \end{itemize}
 
 \section{Scenariusze testów akceptacyjnych}
@@ -93,6 +97,6 @@ Poza przejrzystoœci¹ i ³atwoœci¹ obs³ugi, jak¹ gwarantuje obs³uga b³edów, progra
     \item Podanie zerowej wartoœci kursu.
     \item Podanie ujemnej wartoœci waluty wejœciowej.
 \end{enumerate}
-Program bêdzie uznany za dzia³aj¹cy jeœli pozytywnie przejdzie wszystkie testy. Pod s³owem pozytywnie rozumie siê wyœwietlenie rezultatów w czasie zdefiniowanym powy¿ej, lub odpowiedni komunikat b³edu który pozwoli u¿ytkownikowi naprawiæ b³¹d.
+Program bêdzie uznany za dzia³aj¹cy jeœli pozytywnie przejdzie wszystkie testy. Pod s³owem pozytywnie rozumie siê wyœwietlenie rezultatów, lub odpowiedni komunikat b³edu który pozwoli u¿ytkownikowi naprawiæ b³¹d.
 \end{document}
 

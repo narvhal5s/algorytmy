@@ -8,7 +8,7 @@
 
 \title{Projekt indywidualny\\ Specyfikacja Implementacyjna}
 \author{Arkadiusz Michalak}
-\date{Algorytmy i struktury danych \\ 10.11.2018}
+\date{Algorytmy i struktury danych \\ 11.11.2018}
 
 
 \begin{document}
@@ -16,23 +16,32 @@
 \tableofcontents
 \pagebreak
 
-\section{Omówienia metod poszczególnych klas}
+\section{Wstêp}
+Problem do rozwi¹zania w tym projekcie przedstawia siê nastêpuj¹co. Potrzeba szybkiego i prostego sposobu sprawdzenia czy mo¿emy osi¹gn¹æ zysk obracaj¹c walutami. Jako dane otrzymujemy kursy i prowizje ³¹cz¹ce poszczególne waluty. Naturalnym rozwi¹zaniem tego problemu jest przedstawienia go na grafie i analiza tej w³aœnie struktury. Pos³uguj¹c siê walutami jako wierzcho³kami a kursami jako krawêdziami.
+\section{Omówienie metod poszczególnych klas}
 \subsection{Main Class}
-Klasa g³owna zawieraj¹ca metodê main, bêdzie odpowiadaæ za przyjêcie argumentów podanych wsadowo. Nastêpnie wzglêdem nich bêdzie prowadzone sterowanie. Klasa ta ma dostêp do metod publicznych klasy Load i klasy Graph.
+Klasa g³ówna zawieraj¹ca metodê main, bêdzie odpowiadaæ za przyjêcie argumentów podanych wsadowo. Nastêpnie wzglêdem nich bêdzie prowadzone sterowanie. Klasa ta ma dostêp do metod publicznych klasy Load i klasy Graph.
 \subsection{Graph Package}
 G³ówny pakiet programu, zawiera klasy Graph, Vertex oraz Rate. 
 \subsubsection{Graph}
-Klasa tworz¹ca graf i steruj¹ca jego przetwarzaniem. Zawiera listê wierzcho³ków grafu. Metoda addVertex s³u¿y dodawaniu nowego wierzcho³ka, jak argument przyjmuje kod waluty który stanowi nazw¹ wierzcho³ka. Metoda addRate dodaje do~odpowiedniego wierzcho³ka dane kursu wzglêdem innego wierzcho³ka. Nale¿y sprawdziæ czy wierzcho³ki o takich nazwach istniej¹. Dwie metody dodaj¹ce bêd¹ wywo³ywane przez klase Load pobieraj¹ce dane z pliku wejœciowego. Metoday getBestExchange i getArbitrag zwracaj¹ listê wierzcho³ków którê stanowi¹ odpowienio najlepsz¹ wymiane waluty wejsciowej na wyjœciow¹ lub dowolny arbitra¿. W celu zwrócenia tych danych klasa Graph wywo³a metodê checkGraph, punktowy przebieg tego jak ma zadzia³aæ zawarty w niej algorytm przedstawiono w~rozdziale 2.Opis algorytmu. Po przetworzeniu grafu odczyt optymalnej œcie¿ki odbywa siê przy u¿yciu metody readBestRoad. 
+Klasa tworz¹ca graf i steruj¹ca jego przetwarzaniem. Zawiera listê wierzcho³ków grafu. Metoda addVertex s³u¿y dodawaniu nowego wierzcho³ka, jako argument przyjmuje kod waluty który stanowi nazwê wierzcho³ka. Metoda addRate dodaje do~odpowiedniego wierzcho³ka dane kursu wzglêdem innego wierzcho³ka. Nale¿y sprawdziæ czy wierzcho³ki o takich nazwach istniej¹. Dwie metody dodaj¹ce bêd¹ wywo³ywane przez klasê Load pobieraj¹c¹ dane z pliku wejœciowego. Metody getBestExchange i getArbitrag zwracaj¹ listê wierzcho³ków którê stanowi¹ odpowiednio najlepsz¹ wymiane waluty wejsciowej na wyjœciow¹ lub dowolny arbitra¿. W celu zwrócenia tych danych klasa Graph wywo³a metodê checkGraph, punktowy przebieg tego jak ma zadzia³aæ zawarty w niej algorytm przedstawiono w~rozdziale 2.Opis algorytmu. Po przetworzeniu grafu odczyt optymalnej œcie¿ki odbywa siê przy u¿yciu metody readBestRoad. 
 \subsubsection{Vertex}
-Klasa wierzcho³ek, wszystkie jej pola i metody s¹ domyœlnego czyli pakietowego dostêpu. Zawiera metodê checkNeighborhood, która przechodzi listê s¹siadów danego wierzcho³ka. Druga metoda calculateExchenge s³u¿y do obliczenia iloœci waluty wyjœciowej po wymianie.
+Klasa wierzcho³ek, wszystkie jej pola i metody s¹ domyœlnego czyli pakietowego dostêpu. Zawiera metodê checkNeighborhood, która przechodzi listê s¹siadów danego wierzcho³ka. Druga metoda calculateExchange s³u¿y do obliczenia iloœci waluty wyjœciowej po wymianie.
 \subsubsection{Rate}
-Klasa ta opisuje krawêdzie grafu to jest po³¹czenia miedzy walutami. Ma~~charakter typowo pomocniczy, wprowadzono j¹ w celu uproszczenia i~wyeksponowania wa¿nych danych wymiany.
+Klasa ta opisuje krawêdzie grafu to jest po³¹czenia miêdzy walutami. Ma~~charakter typowo pomocniczy, wprowadzono j¹ w celu uproszczenia i~wyeksponowania wa¿nych danych wymiany.
 \subsection{Load}
-Klasa znajduje siê w swoim w³asnym pakiecie. Jej zadaniem jest odczytania danych z pliku i po sprawdzeniu ich poprawnoœci przekazanie ich do klasy Graph która utworzy odpowiednie, wy¿ej opisane struktury. Metoda publiczna load wywo³ana jest przez klase steruj¹c¹, odczytuje ona ca³y plik, wczeœniej sprawdzaj¹c jego poprawnoœæ metod¹ checkData. 
+Klasa znajduje siê w swoim w³asnym pakiecie. Jej zadaniem jest odczytanie danych z pliku i po sprawdzeniu ich poprawnoœci przekazanie ich do klasy Graph która utworzy odpowiednie, wy¿ej opisane struktury. Metoda publiczna load wywo³ana jest przez klase steruj¹c¹, odczytuje ona ca³y plik, wczeœniej sprawdzaj¹c jego poprawnoœæ metod¹ checkData. 
+\subsection{Runtime Exception Package}
+Klasa bêdzie zawiera³a wyj¹tki jakich spodziewamy siê podczas dzia³ania programu, takie jak:\begin{itemize}
+    \item wyj¹tki podania nieprawid³owych argumentów,
+    \item wyj¹tki b³ednych danych w pliku,
+    \item wyj¹tek braku po³¹czeñ w grafie,
+    \item wyj¹tek kursów dla nie istniej¹cych danych.
+\end{itemize}
 \includepdf[]{RSWR.pdf}
 
 \section{Opis algorytmu}
-Najistotniejsza czêœæ programu czyli algorytm przeszukuj¹cy graf znajduj¹ca siê w klasie "" bêdzie dzia³a³ wed³ug poni¿szego opisu:\begin{enumerate}
+Najistotniejsza czêœæ programu czyli algorytm przeszukuj¹cy graf, znajduj¹ca siê w klasie Graph, bêdzie dzia³a³ wed³ug poni¿szego opisu:\begin{enumerate}
     \item Dzia³anie rozpoczynamy w wierzcho³ku zadanej waluty, wstawiaj¹c zadan¹ wartoœæ - suma któr¹ posiadamy oraz ustawiaj¹c w nim ¿e jest wierzcho³kiem wyjœciowym.
     \item Przechodzimy do s¹siedniego wierzcho³ka.
     \item Ustalamy wartoœæ jego waluty na podstawie kursu i prowizji.
@@ -40,17 +49,29 @@ Najistotniejsza czêœæ programu czyli algorytm przeszukuj¹cy graf znajduj¹ca siê 
     \item Je¿eli to wêze³ wyjœciowy i szukamy arbitra¿u to wychodzimy z algorytmu.
     \item Ustawiamy go jako odwiedzony.
     \item Kroki 3-6 powtarzamy dla wszystkich s¹siadów.
-    \item Ustawiamy w wierzcho³ka bazowym, ¿e zosta³ przeszukany.
+    \item Ustawiamy w wierzcho³ku bazowym, ¿e zosta³ przeszukany.
     \item Kroki 1-8 powtarzamy dla wszystkich wierzcho³ków grafu. 
 \end{enumerate}
-Po wykonaniu powy¿szych dzia³añ znajdujemy ukryt¹ w grafie œcie¿kê arbitra¿u najkorzystniejszej wymiany. Dla arbitra¿u zaczynamy od wierzcho³ka waluty wejœciowej, dla wymiany wierzcho³ka waluty wyjœciowej i wykonujemy nastêpuj¹ce kroki:\begin{enumerate}
+Po wykonaniu powy¿szych dzia³añ znajdujemy ukryt¹ w grafie œcie¿kê arbitra¿u lub~najkorzystniejszej wymiany. Dla arbitra¿u zaczynamy od wierzcho³ka waluty wejœciowej, dla wymiany wierzcho³ka waluty wyjœciowej i wykonujemy nastêpuj¹ce kroki:\begin{enumerate}
     \item Zapisujemy kod waluty wierzcho³ka do listy.
     \item Przechodzimy do przodka wierzcho³ka.
     \item Kroki 1-2 wykonujemy a¿ dotrzemy do wierzcho³ka waluty wejœciowej.
 \end{enumerate}
 
 \section{Scenariusze testów}
-W poni¿szym rozdziale krótko zostan¹ omówione testy poszczególnych metod publicznych. 
+\subsection{Klasa Graph}\begin{itemize}
+    \item Dodanie wierzcho³ka.
+    \item Próba dodania wierzcho³ka nie podaj¹c kodu waluty.
+    \item Dodanie kursu.
+    \item Dodanie kursu dla nieistniej¹cego wierzcho³ka/wierzcho³ków.
+    \item Dodanie kursu podaj¹c ujemn¹ wartoœæ prowizji.
+    \item Dodanie kursu podaj¹c ujemn¹ wartoœæ kursu.
+    \item Dodanie kursu nie podaj¹c prowizji.
+\end{itemize}
+\subsection{Klasa Load}\begin{itemize}
+    \item Próba otworzenia nieistniej¹cego pliku.
+    \item Próba odczytu z pustego pliku.
+\end{itemize}
 
 \section{Informacje o sprzêcie}
 Program zostanie napisany w jêzyku Java, wersji: 1.8.0. U¿ywaj¹c systemu operacyjnego Windows 10 wersji 64-bitowej. Komputer na którym program bêdzie testowany posiada:\begin{itemize}
