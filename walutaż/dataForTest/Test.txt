@@ -1,0 +1,6 @@
+0 BRL real brazylijski
+1 PLN polski z³oty
+2 EUR euro
+#
+0 BRL PLN 0.9442 STA£A 5
+1 EUR PLN 4.2972 PROC 0.001

@@ -32,5 +32,24 @@ public class Graph {
             }
         }
     }
+    
+    public List<Vertex> getBestExchenge(String inCurrency , String outCurrency ){
+        
+
+
+        return null ;
+    }
+    
+    public List<Vertex> getArbitrag(String inCurrency){
+        return null;
+    }
+    
+    private void checkGraph(){
+        
+    }
+    
+    private List<Vertex> readBestRoad(){
+        return null ;
+    }
 
 }

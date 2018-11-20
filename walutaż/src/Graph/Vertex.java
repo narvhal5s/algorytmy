@@ -28,4 +28,5 @@ public class Vertex {
     double calculateRateValue(){
         return 0D;
     }
+    
 }

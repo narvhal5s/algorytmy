@@ -15,10 +15,19 @@ public class Rate {
         this.rateValue = rateValue;
         if ("PROC".equals(rateProvisionType)) {
             this.rateProvisionType = PERCENT;
-        }else{
-            this.rateProvisionType = CONST ;
+        } else {
+            this.rateProvisionType = CONST;
         }
         this.rateProvision = rateProvision;
+    }
+
+    double getProvision(double inValue) {
+        
+        if (rateProvisionType == PERCENT){
+            return inValue * rateProvision ;
+        } else{
+            return rateProvision;
+        }
     }
 
 }
