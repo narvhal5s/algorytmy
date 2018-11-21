@@ -21,13 +21,15 @@ public class Rate {
         this.rateProvision = rateProvision;
     }
 
-    double getProvision(double inValue) {
-        
-        if (rateProvisionType == PERCENT){
-            return inValue * rateProvision ;
-        } else{
+    double calculateRateValue(double baseValue) {
+        return baseValue * rateValue - getProvision(baseValue);
+    }
+
+    double getProvision(double baseValue) {
+        if (rateProvisionType == PERCENT) {
+            return baseValue * rateProvision;
+        } else {
             return rateProvision;
         }
     }
-
 }

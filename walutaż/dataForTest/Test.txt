@@ -1,6 +1,8 @@
-0 BRL real brazylijski
-1 PLN polski z³oty
-2 EUR euro
+0 EUR euro
+1 GBP funt brytyjski
+2 USD dolar amerykañski
 #
-0 BRL PLN 0.9442 STA£A 5
-1 EUR PLN 4.2972 PROC 0.001
+0 EUR GBP 0.9889 PROC 0.00001
+1 GBP USD 1.2795 PROC 0.01
+2 EUR USD 1.1370 STA£A 0.025
+3 USD EUR 0.8795 STA£A 0.01

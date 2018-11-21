@@ -46,7 +46,7 @@ public class Load {
         while (checker.hasNextLine()) {
             String line = checker.nextLine();
             String[] tokens = line.split("\\s");
-            if (tokens[0] == "#") {
+            if ("#".equals(tokens[0])) {
             } else {
                 if (tokens[0].equals(vertexNumber)
                         && tokens[1].matches("\\A-Z{3}")

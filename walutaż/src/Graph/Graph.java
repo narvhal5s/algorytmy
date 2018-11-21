@@ -1,7 +1,9 @@
 package Graph;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Graph {
 
@@ -26,30 +28,82 @@ public class Graph {
                 for (int j = 0; j < vertexList.size(); j++) {
                     vertexTo = vertexList.get(j);
                     if (vertexTo.name.equals(currencyName2)) {
-                        vertexFrom.neighbourList.add(new Rate (vertexTo, value, provisionType, provision) );
+                        vertexFrom.neighbourList.add(new Rate(vertexTo, value, provisionType, provision));
                     }
                 }
             }
         }
     }
-    
-    public List<Vertex> getBestExchenge(String inCurrency , String outCurrency ){
-        
 
+    public List<String> getBestExchenge(String inCurrency, String outCurrency) {
+        checkGraph(inCurrency);
 
-        return null ;
-    }
-    
-    public List<Vertex> getArbitrag(String inCurrency){
-        return null;
-    }
-    
-    private void checkGraph(){
-        
-    }
-    
-    private List<Vertex> readBestRoad(){
-        return null ;
+        List result = readBestRoad(inCurrency, outCurrency);
+
+        return result;
     }
 
+//    public List<Vertex> getArbitrag(String inCurrency) {
+//        checkGraph(inCurrency);
+//        List result = readBestRoad(inCurrency);
+//        return result;
+//    }
+    private void checkGraph(String inCurrency) {
+        Vertex vertexFrom = null;
+        Queue<Vertex> queue = new ArrayDeque<>();
+
+        for (int i = 0; i < vertexList.size(); i++) {
+            vertexFrom = vertexList.get(i);
+            if (vertexFrom.name.equals(inCurrency)) {
+                queue.add(vertexFrom);
+            }
+        }
+
+        while (!queue.isEmpty()) {
+            vertexFrom = queue.remove();
+            for (int i = 0; i < vertexFrom.neighbourList.size(); i++) {
+                vertexFrom.neighbourList.get(i).vertexOut.checkNeighbour(queue);
+                vertexFrom.check = true;
+            }
+        }
+
+    }
+
+    private List<String> readBestRoad(String inCurrency, String outCurrency) {
+        List<String> result = new ArrayList<>();
+        Vertex vertexFrom = null;
+
+        for (int i = 0; i < vertexList.size(); i++) {
+            vertexFrom = vertexList.get(i);
+            if (vertexFrom.name.equals(outCurrency)) {
+                break;
+            }
+        }
+
+        result.add(outCurrency);
+
+        while (!vertexFrom.name.equals(inCurrency)) {
+            result.add(vertexFrom.parrent.name);
+            vertexFrom = vertexFrom.parrent;
+        }
+
+        for (int i = 0; i < vertexList.size(); i++) {
+            vertexFrom = vertexList.get(i);
+            if (vertexFrom.name.equals(outCurrency)) {
+                System.out.println(vertexFrom.value);
+                break;
+            }
+        }
+        return result;
+    }
+
+    public void setInCurrencyValue(String inCurrency, double value) {
+        Vertex vertexFrom = null;
+        for (int i = 0; i < vertexList.size(); i++) {
+            vertexFrom = vertexList.get(i);
+            if (vertexFrom.name.equals(inCurrency)) {
+                vertexFrom.value = value;
+            }
+        }
+    }
 }
