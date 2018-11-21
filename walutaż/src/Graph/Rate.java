@@ -13,7 +13,7 @@ public class Rate {
     Rate(Vertex vartexOut, double rateValue, String rateProvisionType, double rateProvision) {
         this.vertexOut = vartexOut;
         this.rateValue = rateValue;
-        if ("PROC".equals(rateProvisionType)) {
+        if (rateProvisionType.equals("PROC")) {
             this.rateProvisionType = PERCENT;
         } else {
             this.rateProvisionType = CONST;
@@ -22,7 +22,7 @@ public class Rate {
     }
 
     double calculateRateValue(double baseValue) {
-        return baseValue * rateValue - getProvision(baseValue);
+        return baseValue * rateValue - getProvision(baseValue * rateValue );
     }
 
     double getProvision(double baseValue) {

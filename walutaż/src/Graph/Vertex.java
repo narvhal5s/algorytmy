@@ -11,7 +11,7 @@ public class Vertex {
     double value = 0;
     boolean visit = false;
     boolean check = false;
-    boolean base = false;
+    int visit_counter = 0;
     Vertex parrent = null;
 
     Vertex(String name) {
@@ -19,22 +19,28 @@ public class Vertex {
         this.neighbourList = new ArrayList<>();
     }
 
-    void checkNeighbour(Queue<Vertex> queue) {
+    void checkNeighbour(Queue<Vertex> queue, String inCurrency) {
         Vertex visiting;
 
         for (int i = 0; i < neighbourList.size(); i++) {
             visiting = neighbourList.get(i).vertexOut;
             double newValue = neighbourList.get(i).calculateRateValue(this.value);
-            if (newValue > visiting.value) {
+            if (newValue > visiting.value && visiting.parrent != this) {
+                if (visiting.visit_counter > 0 && visiting.name.equals(inCurrency)) {
+                    //Mamy arbitraz
+                    visiting.visit_counter++;
+                    return;
+                }
                 visiting.value = newValue;
-                visiting.parrent = this;
+                if (!(this.parrent == visiting)) {
+                    visiting.parrent = this;
+                }
                 queue.add(visiting);
-                //RETURN ARBITRAZOWY
+                visiting.visit_counter++;
             }
             if (!visiting.visit) {
                 queue.add(visiting);
             }
-
             visiting.visit = true;
         }
     }
