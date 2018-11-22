@@ -19,7 +19,7 @@ public class Vertex {
         this.neighbourList = new ArrayList<>();
     }
 
-    void checkNeighbour(Queue<Vertex> queue, String inCurrency) {
+    void checkNeighbourWithCycleBreak(Queue<Vertex> queue, String inCurrency) {
         Vertex visiting;
         boolean cyclebreak;
 
@@ -30,7 +30,7 @@ public class Vertex {
             if (newValue > visiting.value) {
                 Vertex grandparrent = this.parrent;
                 while (grandparrent != null) {
-                    if (grandparrent == visiting ) {
+                    if (grandparrent == visiting) {
                         cyclebreak = false;
                         break;
                     }
@@ -42,9 +42,43 @@ public class Vertex {
                 }
                 if (!queue.contains(visiting)) {
                     queue.add(visiting);
+                    visiting.check = false;
                 }
             }
         }
+    }
+
+    String checkNeighbourForArbitrag(Queue<Vertex> queue) {
+        String result = null;
+        Vertex visiting;
+        boolean cycleconfirm = false;
+
+        for (int i = 0; i < neighbourList.size(); i++) {
+            visiting = neighbourList.get(i).vertexOut;
+            double newValue = neighbourList.get(i).calculateRateValue(this.value);
+            if (newValue > visiting.value) {
+                Vertex grandparrent = this.parrent;
+                while (grandparrent != null) {
+                    if (grandparrent == visiting) {
+                        cycleconfirm = true;
+                        break;
+                    }
+                    grandparrent = grandparrent.parrent;
+                }
+                if (cycleconfirm) {
+                    visiting.parrent = this;
+                    visiting.value = newValue;
+                    return visiting.name;
+                }
+                visiting.value = newValue;
+                visiting.parrent = this;
+                if (!queue.contains(visiting)) {
+                    queue.add(visiting);
+                    visiting.check = false;
+                }
+            }
+        }
+        return result;
     }
 
     @Override

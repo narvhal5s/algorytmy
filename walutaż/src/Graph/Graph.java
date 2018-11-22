@@ -14,6 +14,12 @@ public class Graph {
     }
 
     public void addVertex(String code) {
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (vertexList.get(i).name == code) {
+                System.out.println("Waluta" + code + "już istnieje");
+                return;
+            }
+        }
         vertexList.add(new Vertex(code));
     }
 
@@ -37,20 +43,18 @@ public class Graph {
     }
 
     public List<String> getBestExchenge(String inCurrency, String outCurrency, double value) {
-        checkGraph(inCurrency, value);
-
+        checkGraphForBestExchenge(inCurrency, value);
         List result = readBestRoad(inCurrency, outCurrency);
-
         return result;
     }
 
-    public List<String> getArbitrag(String inCurrency, double value) {
-        checkGraph(inCurrency, value);
-        List result = readBestRoad(inCurrency, inCurrency);
+    public List<String> getArbitrag(double value) {
+        String vertexName = checkGraphForArbitrage(value);
+        List result = readBestRoad(vertexName, vertexName);
         return result;
     }
 
-    private void checkGraph(String inCurrency, double value) {
+    private void checkGraphForBestExchenge(String inCurrency, double value) {
         Vertex vertexFrom;
         Queue<Vertex> queue = new ArrayDeque<>();
 
@@ -66,15 +70,53 @@ public class Graph {
         while (!queue.isEmpty()) {
             vertexFrom = queue.remove();
             if (!vertexFrom.check) {
-                vertexFrom.checkNeighbour(queue, inCurrency);
+                vertexFrom.checkNeighbourWithCycleBreak(queue, inCurrency);
                 vertexFrom.check = true;
             }
         }
     }
 
+    private String checkGraphForArbitrage(double value) {
+        String result = null;
+        Queue<Vertex> queue = new ArrayDeque<>();
+        Vertex checkThis;
+        Vertex vertexFrom;
+
+        for (int i = 0; i < vertexList.size(); i++) {
+            for (int j = 0; j < vertexList.size(); j++) {
+                vertexFrom = vertexList.get(j);
+                vertexFrom.value = 0;
+                vertexFrom.check = false;
+                vertexFrom.parrent = null;
+            }
+            checkThis = vertexList.get(i);
+            checkThis.value = value;
+            queue.add(checkThis);
+            while (!queue.isEmpty()) {
+                vertexFrom = queue.remove();
+                if (!vertexFrom.check) {
+                    result = vertexFrom.checkNeighbourForArbitrag(queue);
+                    vertexFrom.check = true;
+                }
+                if (result != null && checkThis.name.equals(result)) {
+                    break;
+                }
+            }
+            if (result != null && checkThis.name.equals(result)) {
+                break;
+            }
+        }
+        return result;
+    }
+
     private List<String> readBestRoad(String inCurrency, String outCurrency) {
         List<String> result = new ArrayList<>();
         Vertex vertexFrom = null;
+
+        if (inCurrency == null) {
+            result.add("Nie istnieje arbitraz");
+            return result;
+        }
 
         for (int i = 0; i < vertexList.size(); i++) {
             vertexFrom = vertexList.get(i);
@@ -82,9 +124,9 @@ public class Graph {
                 break;
             }
         }
-        
-        if(vertexFrom.parrent == null){
-            result.add("Nie istnieje") ;
+
+        if (vertexFrom.parrent == null) {
+            result.add("Nie istnieje");
             return result;
         }
 
@@ -97,7 +139,7 @@ public class Graph {
         }
 
         System.out.println(vertexList.toString());
-        
+
         for (int i = 0; i < vertexList.size(); i++) {
             vertexFrom = vertexList.get(i);
             if (vertexFrom.name.equals(outCurrency)) {
@@ -108,7 +150,5 @@ public class Graph {
         result.add(inCurrency);
         return result;
     }
-    
-    
 
 }
