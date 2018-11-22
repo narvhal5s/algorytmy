@@ -11,7 +11,7 @@
 10 SOS szyling somalijski
 11 XBT Bitcoin
 12 AAA bez polaczen
-12 EUR aaa
+13 EUR aaa
 #
 0 EUR GBP 0.8889 PROC 0.0001
 1 GBP USD 1.2795 PROC 0

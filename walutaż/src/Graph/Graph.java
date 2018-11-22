@@ -7,7 +7,8 @@ import java.util.Queue;
 
 public class Graph {
 
-    private List<Vertex> vertexList;
+    private final List<Vertex> vertexList;
+    private int rateCounter = 0;
 
     public Graph() {
         vertexList = new ArrayList<>();
@@ -15,8 +16,9 @@ public class Graph {
 
     public void addVertex(String code) {
         for (int i = 0; i < vertexList.size(); i++) {
-            if (vertexList.get(i).name == code) {
-                System.out.println("Waluta" + code + "już istnieje");
+            if (vertexList.get(i).name.equals(code)) {
+                System.out.println("Waluta o kodzie " + code + " już istnieje, nie zostala dodana powtornie");
+                System.out.println("Waluta ta znajduje się w wierszu " + vertexList.size());
                 return;
             }
         }
@@ -27,6 +29,7 @@ public class Graph {
 
         Vertex vertexFrom;
         Vertex vertexTo;
+        boolean added = false;
 
         for (int i = 0; i < vertexList.size(); i++) {
             vertexFrom = vertexList.get(i);
@@ -35,11 +38,17 @@ public class Graph {
                     vertexTo = vertexList.get(j);
                     if (vertexTo.name.equals(currencyName2)) {
                         vertexFrom.neighbourList.add(new Rate(vertexTo, value, provisionType, provision));
+                        added = true;
                         break;
                     }
                 }
             }
         }
+        if (!added) {
+            System.out.println("Nie dodano kursu pomiedzy " + currencyName1 + " " + currencyName2 + " jedna z walut nie istnieje");
+            System.out.println("Kurs ten znajduje sie w w wierszu " + rateCounter);
+        }
+        rateCounter++;
     }
 
     public List<String> getBestExchenge(String inCurrency, String outCurrency, double value) {

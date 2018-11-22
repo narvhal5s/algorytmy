@@ -5,7 +5,7 @@ import Load.Load;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-public class Walutaż {
+public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         Load load = new Load(args[0]);
