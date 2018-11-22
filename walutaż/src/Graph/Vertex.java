@@ -21,36 +21,29 @@ public class Vertex {
 
     void checkNeighbour(Queue<Vertex> queue, String inCurrency) {
         Vertex visiting;
-        boolean cyclebreak = false;
+        boolean cyclebreak;
 
         for (int i = 0; i < neighbourList.size(); i++) {
+            cyclebreak = true;
             visiting = neighbourList.get(i).vertexOut;
             double newValue = neighbourList.get(i).calculateRateValue(this.value);
             if (newValue > visiting.value) {
-//                if (visiting.visit_counter > 0 && visiting.name.equals(inCurrency)) {
-//                    //Mamy arbitraz
-//                    visiting.parrent = this;
-//                    visiting.visit_counter++;
-//                    return;
-//                }
                 Vertex grandparrent = this.parrent;
                 while (grandparrent != null) {
-                    System.out.println(grandparrent.name);
-                    if (grandparrent == visiting) {
-                        cyclebreak = true;
+                    if (grandparrent == visiting ) {
+                        cyclebreak = false;
+                        break;
                     }
                     grandparrent = grandparrent.parrent;
                 }
-                if (!cyclebreak) {
+                if (cyclebreak) {
                     visiting.value = newValue;
                     visiting.parrent = this;
-                    visiting.visit_counter++;
-
+                }
+                if (!queue.contains(visiting)) {
+                    queue.add(visiting);
                 }
             }
-            visiting.visit = true;
-            queue.add(visiting);
-            cyclebreak = false;
         }
     }
 

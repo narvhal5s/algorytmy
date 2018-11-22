@@ -64,15 +64,10 @@ public class Graph {
         }
 
         while (!queue.isEmpty()) {
-            System.out.println(queue.toString());
             vertexFrom = queue.remove();
             if (!vertexFrom.check) {
                 vertexFrom.checkNeighbour(queue, inCurrency);
                 vertexFrom.check = true;
-                if (vertexFrom.visit_counter > 1 && vertexFrom.name.equals(inCurrency)) {
-                    //Mamy arbitraz
-                    return;
-                }
             }
         }
     }
@@ -101,6 +96,8 @@ public class Graph {
             vertexFrom = vertexFrom.parrent;
         }
 
+        System.out.println(vertexList.toString());
+        
         for (int i = 0; i < vertexList.size(); i++) {
             vertexFrom = vertexList.get(i);
             if (vertexFrom.name.equals(outCurrency)) {
