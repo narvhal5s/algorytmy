@@ -64,6 +64,7 @@ public class Graph {
         }
 
         while (!queue.isEmpty()) {
+            System.out.println(queue.toString());
             vertexFrom = queue.remove();
             if (!vertexFrom.check) {
                 vertexFrom.checkNeighbour(queue, inCurrency);
@@ -97,7 +98,6 @@ public class Graph {
 
         while (!vertexFrom.name.equals(inCurrency)) {
             result.add(vertexFrom.name);
-            System.out.println(result);
             vertexFrom = vertexFrom.parrent;
         }
 
@@ -111,5 +111,7 @@ public class Graph {
         result.add(inCurrency);
         return result;
     }
+    
+    
 
 }
