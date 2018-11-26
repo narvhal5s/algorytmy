@@ -1,3 +1,4 @@
+# 
 0 EUR euro
 1 GBP funt brytyjski
 2 USD dolar amerykañski
@@ -10,9 +11,8 @@
 9 CZK korona czeska
 10 SOS szyling somalijski
 11 XBT Bitcoin
-12 AAA bez polaczen
-13 EUR aaa
-#
+12 BPO nie ma polaczen
+# Kursy 
 0 EUR GBP 0.8889 PROC 0.0001
 1 GBP USD 1.2795 PROC 0
 2 EUR USD 1.1370 STA£A 0.025
@@ -105,4 +105,3 @@
 89 CHF CZK 22.9166 STA£A 0
 90 CHF SOS 581.021 PROC 0
 91 CHF XBT 0.000226374 STA£A 0
-92 AAA BBB 0.1 STA£A 0

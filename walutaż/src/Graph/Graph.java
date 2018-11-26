@@ -77,6 +77,7 @@ public class Graph {
         }
 
         while (!queue.isEmpty()) {
+            System.out.println(queue.toString());
             vertexFrom = queue.remove();
             if (!vertexFrom.check) {
                 vertexFrom.checkNeighbourWithCycleBreak(queue, inCurrency);
@@ -126,28 +127,35 @@ public class Graph {
             result.add("Nie istnieje arbitraz");
             return result;
         }
-
+        
+        boolean exist = true ;
         for (int i = 0; i < vertexList.size(); i++) {
             vertexFrom = vertexList.get(i);
             if (vertexFrom.name.equals(outCurrency)) {
+                exist = false;
                 break;
             }
         }
+        
+        if(exist){
+            result.add("Podana waluta wyjściowa nie istnieje") ;
+            return result ;
+        }
 
         if (vertexFrom.parrent == null) {
-            result.add("Nie istnieje");
+            result.add("Podana waluty nie sa polaczone");
             return result;
         }
 
-        result.add(outCurrency);
+        result.add(vertexFrom.name + " ( " + vertexFrom.value + " ) ");
         vertexFrom = vertexFrom.parrent;
 
         while (!vertexFrom.name.equals(inCurrency)) {
-            result.add(vertexFrom.name);
+            result.add(vertexFrom.name + " ( " + vertexFrom.value + " ) ");
             vertexFrom = vertexFrom.parrent;
         }
 
-        System.out.println(vertexList.toString());
+        result.add(vertexFrom.name + " ( " + vertexFrom.value + " ) ");
 
         for (int i = 0; i < vertexList.size(); i++) {
             vertexFrom = vertexList.get(i);
@@ -156,7 +164,6 @@ public class Graph {
                 break;
             }
         }
-        result.add(inCurrency);
         return result;
     }
 

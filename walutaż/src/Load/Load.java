@@ -15,10 +15,13 @@ public class Load {
     }
 
     public Graph load() throws FileNotFoundException {
-        //int lineNumber = checkData();
         Scanner goodFile = new Scanner(new FileReader("./dataForTest/" + filename));
         String buffor;
         Graph graph = new Graph();
+
+        if (!goodFile.nextLine().startsWith("#")) {
+            throw new IllegalArgumentException("Nie wykryto lini inicjalizującej");
+        }
 
         while (goodFile.hasNextLine()) {
             buffor = goodFile.nextLine();

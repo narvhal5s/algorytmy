@@ -29,7 +29,7 @@ public class Vertex {
             double newValue = neighbourList.get(i).calculateRateValue(this.value);
             if (newValue > visiting.value) {
                 Vertex grandparrent = this.parrent;
-                while (grandparrent != null) {
+                while (grandparrent != null ) {
                     if (grandparrent == visiting) {
                         cyclebreak = false;
                         break;
@@ -39,10 +39,10 @@ public class Vertex {
                 if (cyclebreak) {
                     visiting.value = newValue;
                     visiting.parrent = this;
-                }
-                if (!queue.contains(visiting)) {
-                    queue.add(visiting);
                     visiting.check = false;
+                    if (!queue.contains(visiting)) {
+                        queue.add(visiting);
+                    }
                 }
             }
         }
