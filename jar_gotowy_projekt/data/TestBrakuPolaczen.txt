@@ -1,0 +1,11 @@
+#
+0 EUR euro
+1 GBP funt brytyjski
+2 USD dolar amerykañski
+3 CHF hhh
+4 JPY
+5 PLN
+6 CAD
+7 CNH
+8 CZK
+#

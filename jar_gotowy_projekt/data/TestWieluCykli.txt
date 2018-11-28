@@ -1,0 +1,18 @@
+#
+0 EUR euro
+1 GBP cos
+2 USD legia
+3 PLN warszawa
+4 JPY to 
+5 CHF najlepszy 
+6 RUB klub
+# Kursy walut (id | symbol (waluta wejœciowa) | symbol (waluta wyjœciowa) | kurs | typ op³aty | op³ata)
+0 EUR GBP 1.1 STA£A 0
+1 GBP USD 1.1 STA£A 0
+2 USD EUR 1.1 STA£A 0
+3 GBP JPY 1.1 STA£A 0
+4 JPY CHF 1.2 STA£A 0
+5 CHF PLN 1.2 STA£A 0
+6 PLN JPY 1.2 STA£A 0
+7 USD PLN 1.1 STA£A 0
+8 CHF RUB 1.1 STA£A 0
