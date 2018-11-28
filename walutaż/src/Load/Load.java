@@ -15,7 +15,7 @@ public class Load {
     }
 
     public Graph load() throws FileNotFoundException {
-        Scanner goodFile = new Scanner(new FileReader("./dataForTest/" + filename));
+        Scanner goodFile = new Scanner(new FileReader("./data/" + filename));
         String buffor;
         Graph graph = new Graph();
 

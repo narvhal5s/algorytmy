@@ -22,10 +22,11 @@ public class Main {
         Graph graph = load.load();
         List<String> result = null ;
         if (args.length == 5) {
-            result = graph.getBestExchenge(args[2], args[4], Double.parseDouble(args[3]));
+            result = graph.getBestExchenge(args[3], args[4], Double.parseDouble(args[2]));
         } else {
             result = graph.getArbitrag(Double.parseDouble(args[2]));
         }
+        System.out.print("Ścieżka: ");
         for (int i = result.size() - 1; i >= 0; i--) {
             System.out.print(result.get(i) + " ");
         }

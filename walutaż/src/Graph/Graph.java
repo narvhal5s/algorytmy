@@ -1,5 +1,6 @@
 package Graph;
 
+import java.text.DecimalFormat;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +78,6 @@ public class Graph {
         }
 
         while (!queue.isEmpty()) {
-            System.out.println(queue.toString());
             vertexFrom = queue.remove();
             if (!vertexFrom.check) {
                 vertexFrom.checkNeighbourWithCycleBreak(queue, inCurrency);
@@ -127,8 +127,8 @@ public class Graph {
             result.add("Nie istnieje arbitraz");
             return result;
         }
-        
-        boolean exist = true ;
+
+        boolean exist = true;
         for (int i = 0; i < vertexList.size(); i++) {
             vertexFrom = vertexList.get(i);
             if (vertexFrom.name.equals(outCurrency)) {
@@ -136,10 +136,10 @@ public class Graph {
                 break;
             }
         }
-        
-        if(exist){
-            result.add("Podana waluta wyjściowa nie istnieje") ;
-            return result ;
+
+        if (exist) {
+            result.add("Podana waluta wyjściowa nie istnieje");
+            return result;
         }
 
         if (vertexFrom.parrent == null) {
@@ -147,20 +147,20 @@ public class Graph {
             return result;
         }
 
-        result.add(vertexFrom.name + " ( " + vertexFrom.value + " ) ");
+        result.add(vertexFrom.name);
         vertexFrom = vertexFrom.parrent;
 
         while (!vertexFrom.name.equals(inCurrency)) {
-            result.add(vertexFrom.name + " ( " + vertexFrom.value + " ) ");
+            result.add(vertexFrom.name);
             vertexFrom = vertexFrom.parrent;
         }
 
-        result.add(vertexFrom.name + " ( " + vertexFrom.value + " ) ");
+        result.add(vertexFrom.name);
 
         for (int i = 0; i < vertexList.size(); i++) {
             vertexFrom = vertexList.get(i);
             if (vertexFrom.name.equals(outCurrency)) {
-                System.out.println(vertexFrom.value);
+                System.out.format("Wynik: %.4f %s%n", vertexFrom.value , vertexFrom.name);
                 break;
             }
         }
