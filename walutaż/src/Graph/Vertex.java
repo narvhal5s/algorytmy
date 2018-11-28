@@ -11,7 +11,6 @@ public class Vertex {
     double value = 0;
     boolean visit = false;
     boolean check = false;
-    int visit_counter = 0;
     Vertex parrent = null;
 
     Vertex(String name) {
