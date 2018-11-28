@@ -11,7 +11,7 @@
 \fancyhf{}
 \fancyhead[CO,CE]{Arkadiusz Michalak - 291092 \\ Projekt indywidualny - Sprawozdanie Koñcowe \\ 29.11.2018 }
  
-\rfoot{Page \thepage \hspace{0pt} of \pageref{LastPage}}
+\rfoot{Strona \thepage \hspace{0pt}/\pageref{LastPage}}
  
 
 
@@ -27,14 +27,15 @@
 \section{Wstêp}
 Dokument zosta³ stworzony w celu podsumowanie efektów prac nad projektem. Celem projektu by³o napisanie programu który dla podanych walut i kursów obliczy~i wska¿e najbardziej op³acaln¹ œcie¿kê wymiany. Drug¹ funkcjonalnoœci¹  programu jest znalezienie i wskazanie arbitra¿u ekonomicznego dla dowolonej waluty w zbiorze.
 
-
 \section{Opis algorytmu}
 Kluczowym elementem programu jest sam algorytm sprawdzania utworzonego grafu, Graf tworz¹ wierzcho³ki odpowiadaj¹ce walutom oraz krawêdzie odpowiadaj¹ce kursom. Sam sposób dzia³ania algorytmu opiera siê w du¿ej mierze na przeszukiwania grafu w szerz BFS - 
 \href{https://pl.wikipedia.org/wiki/Przeszukiwanie_wszerz}{\textbf{link}}. 
+
 \subsection{Wyszukiwanie arbitra¿u}
 Algorytm zaczyna od pierwszego wierzcho³ka na liœcie wstawia wartoœæ podan¹ przez u¿ytkowanika i zaczyna przegl¹daæ jego s¹siadów. Ka¿dy wierzcho³ek który otrzymuje wy¿sz¹ wartoœæ trafia do kolejki i jeszcze raz sprawdzane jest jego s¹siedctwo. Sytuacja dla której potwierdzane jest znalezienie arbitra¿u wygl¹da nastêpuj¹co: W wierzcho³ku od którego zaczynaliœmy wartoœæ mo¿e zostaæ zmieniona na wy¿sz¹, jeœli zachodzi taka sytuacja to wychodzimy z metody i funkcja zapisu zaczynaj¹c od tego wierzcho³ka wypisuje jego przodków. Jeœli taka sytuacja nie zasz³a powtarzamy algorytm a¿ do przejœæia ca³ej listy wierzcho³ków.
+
 \subsection{Wyszukiwanie najlepszej wymiany}
-Algorytm zaczyna dzia³anie od wyszukania wierzcho³ka waluty wejœciowej, wstawia wartoœæ podan¹ przez u¿ytkownika. Wierzcho³ek jest dodawany do kolejki i rozpoczyna siê dzia³anie. Sprawdzani s¹ wszyscy s¹siedzi wierzcho³ka zdejmowane z kolejki. Ka¿dy wierzcho³ek którego wartoœæ wzros³a jest dodawany do kolejki. Algorytm nie pozwala na zwiêkszanie wartoœci przez powtórzenie cyklu. Wyklucza to zapêtlanie siê do nieskoñczonoœci. Dzia³anie algorytmu koñczy siê po opró¿nieniu kolejki. Nastêpnie odczytywana jest œcie¿ka przodków dla wierzoch³ka waluty wyjœciowej.
+Algorytm zaczyna dzia³anie od wyszukania wierzcho³ka waluty wejœciowej, wstawia wartoœæ podan¹ przez u¿ytkownika. Wierzcho³ek jest dodawany do kolejki i rozpoczyna siê dzia³anie. Sprawdzani s¹ wszyscy s¹siedzi wierzcho³ka zdejmowane z kolejki. Ka¿dy wierzcho³ek którego wartoœæ wzros³a jest dodawany do kolejki. Algorytm nie pozwala na zwiêkszanie wartoœci przez powtórzenie cyklu. Wyklucza to zapêtlanie siê do nieskoñczonoœci. Dzia³anie algorytmu koñczy siê po opró¿nieniu kolejki. Nastêpnie odczytywana jest œcie¿ka przodków dla wierzcho³ka waluty wyjœciowej.
 
 \section{Krótka instrukcja obs³ugi}
 Program nale¿y wywo³aæ przy u¿yciu narzêdzia Power Shell znajduj¹c siê w folderze z plikiem waluty.jar \textsl{java -jar waluty.jar}. W tym samym folderze co plik jar musi znajdowaæ siê folder data a w nim plik danych wejœciowych w formacie txt, jako argumenty wywo³ania nale¿y podaæ:
@@ -49,6 +50,7 @@ Program nale¿y wywo³aæ przy u¿yciu narzêdzia Power Shell znajduj¹c siê w folderz
 
 \section{Efekty dzia³ania programu}
 W tym rozdziale zostan¹ zaprezentowane odpowiedzi programu na wywo³anie zarówno prawid³owe jak i b³edne. Prezentowane bêdzie polecenie jakie wywo³ano oraz wyœwietlone przez programu wiadomoœci. Pliki które by³y u¿ywane do testowania znaleŸæ mo¿na w folderze data znajduj¹cym siê w g³ównym katalogu projektu.
+
 \subsection{Dzia³anie prawid³owe}
 \begin{itemize}
     \item java -jar waluty.jar arbitaz Test.txt 10000 \\
@@ -64,6 +66,7 @@ Rozpoczynam liczenie wymiany \\
 Wynik: 1331,0000 JPY \\
 Œcie¿ka: USD EUR GBP JPY \\
 \end{itemize}
+
 \subsection{Dzia³anie przy b³ednych danych}
 \begin{itemize}
     \item java -jar waluty.jar arbitaz TestBrakuPolaczen.txt 10000 \\
@@ -77,9 +80,6 @@ Rozpoczynam liczenie wymiany \\
 Œcie¿ka: Podana waluta wyjœciowa nie istnieje \\
 \end{itemize}
 
-
-\subsection{OdpowiedŸ na b³edy}
-
 \section{Wprowadzone zmiany}
 \begin{enumerate}
     \item Metode sprawdzaj¹c¹ s¹siadów w grafie rozbito na dwie ró¿ne od siebie metody, pierwsza sprawdza s¹siadów szukaj¹c arbitra¿u, druga szukaj¹c najlepszej wymiany, ró¿ni¹ siê warunkami wyjœcia z metody oraz zwracanymi wartoœciami. Odpowiadaj¹ im dwie metody klasy \textbf{Graph} które dalej przetwarzaj¹ zwrócone informacje. Zmiana ta by³a motywowana znaczn¹ ró¿nic¹ pomiedzy tym co musi zostaæ sprawdzone dla znalezienia arbitra¿u. Analogicznie do tego jak dzia³a algorytm, opisany w rozdziale 2.
@@ -88,11 +88,12 @@ Rozpoczynam liczenie wymiany \\
 \end{enumerate}
 
 \section{Podsumowanie i wnioski koñcowe}
+
 Tworzenie programu oraz samo rozwi¹zanie problemu teoretycznie by³o zadaniem adekwatnie zajmuj¹cym i rozwiaj¹cym. Zakoñczy³o siê sukcesem i powstaniem sprawnie dzia³aj¹cego programu. Wprowadzono znaczn¹ iloœæ wa¿nych zmian wzglêdem za³o¿eñ zawartych w specyfikacjach. Wnioski jakie zosta³y wyci¹gniête w czasie pracy nad projektem przedstawiaj¹ siê nastêpuj¹co:
 \begin{enumerate}
-\item 
-\item 
-\item 
+\item Dobr¹ decyzja by³ wybór BFS jako bazowego algorytmu i modyfikowanie go tak by spe³niæ za³o¿enia.
+\item Zrezygnowano z tworzenie parsera plików tekstowych uniwersalnego zastosowania ze wzglêdu na to, ¿e stworzenie go z funkcji dostêpnych w standardowej biblotece Java przebieg³o bardzo sprawnie.
+\item Przyjêt¹ dobr¹ strukture podzia³u programu na pakiety i klasy, pomog³o to usprawniæ prace nad projektem w etapie implementacji.
 
 \end{enumerate}
 
