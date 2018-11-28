@@ -18,11 +18,9 @@ public class Load {
         Scanner goodFile = new Scanner(new FileReader("./data/" + filename));
         String buffor;
         Graph graph = new Graph();
-
         if (!goodFile.nextLine().startsWith("#")) {
             throw new IllegalArgumentException("Nie wykryto lini inicjalizującej");
         }
-
         while (goodFile.hasNextLine()) {
             buffor = goodFile.nextLine();
             String[] tmp = buffor.split("\\s");
@@ -62,5 +60,4 @@ public class Load {
         }
         return -1;
     }
-
 }

@@ -20,7 +20,7 @@ public class Main {
         }
         Load load = new Load(args[1]);
         Graph graph = load.load();
-        List<String> result = null ;
+        List<String> result = null;
         if (args.length == 5) {
             result = graph.getBestExchenge(args[3], args[4], Double.parseDouble(args[2]));
         } else {

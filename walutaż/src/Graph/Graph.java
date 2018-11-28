@@ -27,7 +27,6 @@ public class Graph {
     }
 
     public void addRate(String currencyName1, String currencyName2, double value, String provisionType, double provision) {
-
         Vertex vertexFrom;
         Vertex vertexTo;
         boolean added = false;
@@ -76,7 +75,6 @@ public class Graph {
                 break;
             }
         }
-
         while (!queue.isEmpty()) {
             vertexFrom = queue.remove();
             if (!vertexFrom.check) {
@@ -122,12 +120,10 @@ public class Graph {
     private List<String> readBestRoad(String inCurrency, String outCurrency) {
         List<String> result = new ArrayList<>();
         Vertex vertexFrom = null;
-
         if (inCurrency == null) {
             result.add("Nie istnieje arbitraz");
             return result;
         }
-
         boolean exist = true;
         for (int i = 0; i < vertexList.size(); i++) {
             vertexFrom = vertexList.get(i);
@@ -136,31 +132,25 @@ public class Graph {
                 break;
             }
         }
-
         if (exist) {
             result.add("Podana waluta wyjściowa nie istnieje");
             return result;
         }
-
         if (vertexFrom.parrent == null) {
             result.add("Podana waluty nie sa polaczone");
             return result;
         }
-
         result.add(vertexFrom.name);
         vertexFrom = vertexFrom.parrent;
-
         while (!vertexFrom.name.equals(inCurrency)) {
             result.add(vertexFrom.name);
             vertexFrom = vertexFrom.parrent;
         }
-
         result.add(vertexFrom.name);
-
         for (int i = 0; i < vertexList.size(); i++) {
             vertexFrom = vertexList.get(i);
             if (vertexFrom.name.equals(outCurrency)) {
-                System.out.format("Wynik: %.4f %s%n", vertexFrom.value , vertexFrom.name);
+                System.out.format("Wynik: %.4f %s%n", vertexFrom.value, vertexFrom.name);
                 break;
             }
         }

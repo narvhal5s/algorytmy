@@ -22,7 +22,7 @@ public class Rate {
     }
 
     double calculateRateValue(double baseValue) {
-        return baseValue * rateValue - getProvision(baseValue * rateValue );
+        return baseValue * rateValue - getProvision(baseValue * rateValue);
     }
 
     double getProvision(double baseValue) {
